@@ -135,4 +135,6 @@ Note that `SomeEnum` and `SomeStuff` do not need to conform to `NSJSONSerializab
 ## Feedback
 This project is in its very early stage. If you have an idea or found an issue, submit it here or write me on Twitter ([@andrii_ch](https://twitter.com/andrii_ch))
 
-
+## Why so "Hacky"?
+Just in case you were wondering.
+Reflection in Swift is somewhat clumsy and limited (compared to, say, Java), and thus requires quite a bit of messy code (just look at [Mirror+Serialization.swift](https://github.com/deville/hacky-serializer-swift/blob/master/HackySerializer/Classes/Mirror%2BSerialization.swift)!). Hopefully the situation will improve in the future.
