@@ -5,20 +5,33 @@ Protocol-based serialization which works with any Swift type
 This library was developed for the need of simple non-intrusive way to serialize any value to JSON which does not require manual work or subclassing.
 
 ## Usage
-1. Specify conformance to `HackySerializable` protocol.
-2. Access `.serialized` property of your value. This property has type `AnyObject` and contains either `Dictionary` or `Array` depending on the type of your value.
-3. Convert to JSON if needed using `NSJSONSerialization`: 
+1. Specify conformance to `NSJSONSerializable` protocol.
+2. Use `serializedJSONData(options: NSJSONWritingOptions) -> NSData` function to convert your value to JSON.
+
+**Caveat**: `NSJSONSerialization` requires that all objects are instances of `NSString`, `NSNumber`, `NSArray`, `NSDictionary`, or `NSNull`. If your values contain objects of other types, you need to specify conformance to `NSJSONValue` protocol:
 ```swift
-let serialized = someStuff.serialized
-
-let jsonData = try! NSJSONSerialization.dataWithJSONObject(serialized, options: [.PrettyPrinted])
-let string = String(data: jsonData, encoding: NSUTF8StringEncoding)!
-
-print(string)
+extension NSDate: NSJSONValue {
+   
+  public var NSJSONValue: AnyObject {
+    return "this is date"
+  }
+}
 ```
+or 
+```swift
+extension NSDate: NSJSONValue {}
+```
+In the latter case value will be converted to string as `"\(value)"`.
 
 ## Example
 ```swift
+extension NSDate: NSJSONValue {
+  
+  public var NSJSONValue: AnyObject {
+    return "this is date"
+  }
+}
+
 enum SomeEnum {
   case Case1, Case2
 }
@@ -35,7 +48,7 @@ class SomeStuff {
   }
 }
 
-struct Person: HackySerializable {
+struct Person: NSJSONSerializable {
   let firstName: String
   let secondName: String
   let thingies: [SomeStuff]
@@ -45,6 +58,8 @@ struct Person: HackySerializable {
   let someDict: [String: AnyObject?]
   
   let anotherThingy: SomeStuff
+  
+  let someDate: NSDate
   
   let someEnumField: SomeEnum? = .Case1
   let anotherEnumField: SomeEnum = .Case2
@@ -58,7 +73,8 @@ let person = Person(
   age: 29,
   age2: nil,
   someDict: [ "hello": "world", "key": nil ],
-  anotherThingy: SomeStuff(ok: "ok", omg: nil, stuff: [])
+  anotherThingy: SomeStuff(ok: "ok", omg: nil, stuff: []),
+  someDate: NSDate()
 )
 ```
 Resulting JSON:
@@ -99,13 +115,14 @@ Resulting JSON:
     "ok" : "ok",
     "omg" : null
   },
+  "someDate" : "this is date",
   "idSet" : [
     2,
     1
   ]
 }
 ```
-Note that `SomeEnum` and `SomeStuff` do not need to conform to `HackySerializable`
+Note that `SomeEnum` and `SomeStuff` do not need to conform to `NSJSONSerializable`
 
 
 ## Limitations
@@ -113,6 +130,7 @@ Note that `SomeEnum` and `SomeStuff` do not need to conform to `HackySerializabl
 2. Superclass serialization: not implemented (yet).
 3. Dictionary keys must be `String`s (more generic `Hashable` keys are not yet supported).
 4. Enums: current implementation just uses the enum case name. Raw values are not supported due to the limitations of Swift reflection, associated values might be supported later.
+5. Order of fields is not maintained.
 
 ## Feedback
 This project is in its very early stage. If you have an idea or found an issue, submit it here or write me on Twitter ([@andrii_ch](https://twitter.com/andrii_ch))
