@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "HackySerializer"
-  spec.version = "0.1.1"
+  spec.version = "0.1.2"
   spec.summary = "Protocol-based serialization which works with almost any Swift type without subclassing"
   spec.homepage = "https://github.com/deville/hacky-serializer-swift"
   spec.license = { type: 'MIT', file: 'LICENSE' }
