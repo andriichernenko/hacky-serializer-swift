@@ -11,6 +11,8 @@
 		40A883C31C98DD2F00E005C9 /* Mirror+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */; };
 		40A883C51C98DD5F00E005C9 /* SerializationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C41C98DD5F00E005C9 /* SerializationError.swift */; };
 		40A883C71C98DDBD00E005C9 /* HackySerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C61C98DDBD00E005C9 /* HackySerializable.swift */; };
+		40A883EA1C99B11100E005C9 /* NSJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883E91C99B11100E005C9 /* NSJSONSerializable.swift */; };
+		40A883EC1C99B1DB00E005C9 /* NSJSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883EB1C99B1DB00E005C9 /* NSJSONValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+Serialization.swift"; sourceTree = "<group>"; };
 		40A883C41C98DD5F00E005C9 /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
 		40A883C61C98DDBD00E005C9 /* HackySerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackySerializable.swift; sourceTree = "<group>"; };
+		40A883E91C99B11100E005C9 /* NSJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSJSONSerializable.swift; sourceTree = "<group>"; };
+		40A883EB1C99B1DB00E005C9 /* NSJSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSJSONValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,8 @@
 				40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */,
 				40A883C41C98DD5F00E005C9 /* SerializationError.swift */,
 				40A883C61C98DDBD00E005C9 /* HackySerializable.swift */,
+				40A883E91C99B11100E005C9 /* NSJSONSerializable.swift */,
+				40A883EB1C99B1DB00E005C9 /* NSJSONValue.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -148,8 +154,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				40A883C71C98DDBD00E005C9 /* HackySerializable.swift in Sources */,
+				40A883EA1C99B11100E005C9 /* NSJSONSerializable.swift in Sources */,
 				40A883C31C98DD2F00E005C9 /* Mirror+Serialization.swift in Sources */,
 				40A883C51C98DD5F00E005C9 /* SerializationError.swift in Sources */,
+				40A883EC1C99B1DB00E005C9 /* NSJSONValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
