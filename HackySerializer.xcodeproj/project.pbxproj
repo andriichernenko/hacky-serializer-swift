@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		40A883BA1C98D9C700E005C9 /* HackySerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A883B91C98D9C700E005C9 /* HackySerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		40A883C31C98DD2F00E005C9 /* Mirror+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */; };
+		40A883C51C98DD5F00E005C9 /* SerializationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C41C98DD5F00E005C9 /* SerializationError.swift */; };
+		40A883C71C98DDBD00E005C9 /* HackySerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C61C98DDBD00E005C9 /* HackySerializable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		40A883B61C98D9C700E005C9 /* HackySerializer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HackySerializer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A883B91C98D9C700E005C9 /* HackySerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HackySerializer.h; sourceTree = "<group>"; };
 		40A883BB1C98D9C700E005C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+Serialization.swift"; sourceTree = "<group>"; };
+		40A883C41C98DD5F00E005C9 /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
+		40A883C61C98DDBD00E005C9 /* HackySerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackySerializable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +52,21 @@
 		40A883B81C98D9C700E005C9 /* HackySerializer */ = {
 			isa = PBXGroup;
 			children = (
+				40A883C11C98DD1000E005C9 /* Classes */,
 				40A883B91C98D9C700E005C9 /* HackySerializer.h */,
 				40A883BB1C98D9C700E005C9 /* Info.plist */,
 			);
 			path = HackySerializer;
+			sourceTree = "<group>";
+		};
+		40A883C11C98DD1000E005C9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */,
+				40A883C41C98DD5F00E005C9 /* SerializationError.swift */,
+				40A883C61C98DDBD00E005C9 /* HackySerializable.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40A883C71C98DDBD00E005C9 /* HackySerializable.swift in Sources */,
+				40A883C31C98DD2F00E005C9 /* Mirror+Serialization.swift in Sources */,
+				40A883C51C98DD5F00E005C9 /* SerializationError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +248,7 @@
 		40A883BF1C98D9C700E005C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -238,12 +259,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ch.andrii.HackySerializer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		40A883C01C98D9C700E005C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -276,6 +299,7 @@
 				40A883C01C98D9C700E005C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
