@@ -9,10 +9,9 @@
 /* Begin PBXBuildFile section */
 		40A883BA1C98D9C700E005C9 /* HackySerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 40A883B91C98D9C700E005C9 /* HackySerializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		40A883C31C98DD2F00E005C9 /* Mirror+Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */; };
-		40A883C51C98DD5F00E005C9 /* SerializationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C41C98DD5F00E005C9 /* SerializationError.swift */; };
 		40A883C71C98DDBD00E005C9 /* HackySerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883C61C98DDBD00E005C9 /* HackySerializable.swift */; };
-		40A883EA1C99B11100E005C9 /* NSJSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883E91C99B11100E005C9 /* NSJSONSerializable.swift */; };
-		40A883EC1C99B1DB00E005C9 /* NSJSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883EB1C99B1DB00E005C9 /* NSJSONValue.swift */; };
+		40A883EA1C99B11100E005C9 /* JSONSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883E91C99B11100E005C9 /* JSONSerializable.swift */; };
+		40A883EC1C99B1DB00E005C9 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A883EB1C99B1DB00E005C9 /* JSONValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +19,9 @@
 		40A883B91C98D9C700E005C9 /* HackySerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HackySerializer.h; sourceTree = "<group>"; };
 		40A883BB1C98D9C700E005C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Mirror+Serialization.swift"; sourceTree = "<group>"; };
-		40A883C41C98DD5F00E005C9 /* SerializationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SerializationError.swift; sourceTree = "<group>"; };
 		40A883C61C98DDBD00E005C9 /* HackySerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HackySerializable.swift; sourceTree = "<group>"; };
-		40A883E91C99B11100E005C9 /* NSJSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSJSONSerializable.swift; sourceTree = "<group>"; };
-		40A883EB1C99B1DB00E005C9 /* NSJSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSJSONValue.swift; sourceTree = "<group>"; };
+		40A883E91C99B11100E005C9 /* JSONSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerializable.swift; sourceTree = "<group>"; };
+		40A883EB1C99B1DB00E005C9 /* JSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,10 +65,9 @@
 			isa = PBXGroup;
 			children = (
 				40A883C21C98DD2F00E005C9 /* Mirror+Serialization.swift */,
-				40A883C41C98DD5F00E005C9 /* SerializationError.swift */,
 				40A883C61C98DDBD00E005C9 /* HackySerializable.swift */,
-				40A883E91C99B11100E005C9 /* NSJSONSerializable.swift */,
-				40A883EB1C99B1DB00E005C9 /* NSJSONValue.swift */,
+				40A883E91C99B11100E005C9 /* JSONSerializable.swift */,
+				40A883EB1C99B1DB00E005C9 /* JSONValue.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -113,11 +110,12 @@
 		40A883AD1C98D9C700E005C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Andrii Chernenko";
 				TargetAttributes = {
 					40A883B51C98D9C700E005C9 = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -154,10 +152,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				40A883C71C98DDBD00E005C9 /* HackySerializable.swift in Sources */,
-				40A883EA1C99B11100E005C9 /* NSJSONSerializable.swift in Sources */,
+				40A883EA1C99B11100E005C9 /* JSONSerializable.swift in Sources */,
 				40A883C31C98DD2F00E005C9 /* Mirror+Serialization.swift in Sources */,
-				40A883C51C98DD5F00E005C9 /* SerializationError.swift in Sources */,
-				40A883EC1C99B1DB00E005C9 /* NSJSONValue.swift in Sources */,
+				40A883EC1C99B1DB00E005C9 /* JSONValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,8 +174,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -225,8 +224,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -246,6 +247,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -257,6 +259,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -268,6 +271,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -275,6 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -285,6 +290,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ch.andrii.HackySerializer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
