@@ -6,14 +6,16 @@
 //  Copyright © 2016 Andrii Chernenko. All rights reserved.
 //
 
+
 public protocol HackySerializable {
   
-  var serialized: AnyObject { get }
+  var serialized: Any { get }
 }
+
 
 public extension HackySerializable {
   
-  var serialized: AnyObject {
+  var serialized: Any {
     return Mirror(reflecting: self).serializedSubject
   }
 }

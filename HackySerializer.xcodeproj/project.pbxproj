@@ -15,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		404BAFE01D9E8A69007C1D3C /* Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Testing.playground; sourceTree = "<group>"; };
 		40A883B61C98D9C700E005C9 /* HackySerializer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HackySerializer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A883B91C98D9C700E005C9 /* HackySerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HackySerializer.h; sourceTree = "<group>"; };
 		40A883BB1C98D9C700E005C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		40A883AC1C98D9C700E005C9 = {
 			isa = PBXGroup;
 			children = (
+				404BAFE01D9E8A69007C1D3C /* Testing.playground */,
 				40A883B81C98D9C700E005C9 /* HackySerializer */,
 				40A883B71C98D9C700E005C9 /* Products */,
 			);

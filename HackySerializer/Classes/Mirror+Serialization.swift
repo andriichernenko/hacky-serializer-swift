@@ -6,75 +6,55 @@
 //  Copyright © 2016 Andrii Chernenko. All rights reserved.
 //
 
-private func cast(_ value: Any) -> AnyObject {
-  return value as AnyObject
+
+fileprivate func serialize(_ value: Any) -> Any {
+  return (value as? HackySerializable)?.serialized ?? Mirror(reflecting: value).serializedSubject
 }
 
 
 extension Mirror {
   
-  var serializedSubject: AnyObject {
+  var serializedSubject: Any {
     switch self.displayStyle {
       
     case .collection?, .set?:
-      return self.children.map { child -> AnyObject in
-        let childValue = child.value
-        let childValueMirror = Mirror(reflecting: childValue)
-        return childValueMirror.displayStyle == nil
-          ? cast(childValue)
-          : childValueMirror.serializedSubject
-        } as AnyObject
+      return children
+        .map { Mirror(reflecting: $0.value).displayStyle == nil ? $0.value : serialize($0.value) }
       
     case .struct?, .class?:
-      var dictionary: [String: AnyObject] = [:]
-      for child in self.children {
-        guard let key = child.label else {
-          continue
-        }
+      var dictionary: [String: Any] = [:]
+      
+      children.forEach { child in
+        guard let key = child.label else { return }
         
         let childMirror = Mirror(reflecting: child)
         let childValueMirror = Mirror(reflecting: child.value)
         
         switch (childMirror.displayStyle, childValueMirror.displayStyle) {
-        case (.tuple?, nil):
-          if case let value? = childMirror.descendant(1) {
-            dictionary[key] = cast(value)
-          } else {
-            dictionary[key] = NSNull()
-          }
-          
-        case (.tuple?, .optional?):
-          if case let value? = childValueMirror.descendant(0) {
-            let valueIsEnum = Mirror(reflecting: value).displayStyle == .enum
-            dictionary[key] = cast(valueIsEnum ? "\(value)" : value)
-          } else {
-            dictionary[key] = NSNull()
-          }
-          
-        case (.tuple?, .enum?):
-          if case let value? = childMirror.descendant(1) {
-            dictionary[key] = "\(value)" as AnyObject?
-          } else {
-            dictionary[key] = NSNull()
-          }
-          
-        default:
-          dictionary[key] = childValueMirror.serializedSubject
+          case (.tuple?, nil):
+            dictionary[key] = childMirror.descendant(1) ?? NSNull()
+            
+          case (.tuple?, .optional?):
+            dictionary[key] = childValueMirror.descendant(0)
+              .map { Mirror(reflecting: $0).displayStyle == .enum ? "\($0)" : $0 }
+              ?? NSNull()
+            
+          case (.tuple?, .enum?):
+            dictionary[key] = childMirror.descendant(1).map { "\($0)" as Any } ?? NSNull()
+            
+          default:
+            dictionary[key] = serialize(value: child.value)
         }
       }
       
-      return dictionary as AnyObject
-      
+      return dictionary
+
     case .optional?:
-      if case let value? = self.descendant(0) {
-        return cast(value)
-      } else {
-        return NSNull()
-      }
+      return self.descendant(0) ?? NSNull()
       
     case .dictionary?:
-      var dictionary: [String: AnyObject] = [:]
-      self.children
+      var dictionary: [String: Any] = [:]
+      children
         .map { Mirror(reflecting: $0) }
         .flatMap {
           guard let key = $0.descendant(1, 0) as? String else {
@@ -86,19 +66,16 @@ extension Mirror {
           }
           
           let childValueMirror = Mirror(reflecting: value)
-          let unwrappedValue = childValueMirror.displayStyle == nil
-            ? cast(value)
-            : childValueMirror.serializedSubject
+          let unwrappedValue = childValueMirror.displayStyle == nil ? value : serialize(value: value)
           
           return (key, unwrappedValue)
         }
         .forEach { dictionary[$0] = $1 }
       
-      return dictionary as AnyObject
+      return dictionary
       
     default:
-      fatalError("serialization failed, \(self.displayStyle) serialization is not implemented")
+      fatalError("serialization failed, \(displayStyle) serialization is not implemented")
     }
-
   }
 }

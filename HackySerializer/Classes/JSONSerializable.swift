@@ -8,42 +8,34 @@
 
 import Foundation
 
-public protocol NSJSONSerializable: HackySerializable {
+public protocol JSONSerializable: HackySerializable {
   
   func serializedJSONData(options: JSONSerialization.WritingOptions) throws -> Data
 }
 
-public extension NSJSONSerializable {
+public extension JSONSerializable {
   
   func serializedJSONData(options: JSONSerialization.WritingOptions = []) throws -> Data {
-    let serializedObject: AnyObject
-    if let JSONValue = self as? JSONValue {
-      serializedObject = JSONValue.JSONValue
-    } else {
-      serializedObject = self.serialized
-    }
-    
-    let validatedSerializedObject = validate(serializedObject)
-    
+    let validatedSerializedObject = validate(self.serialized)
     return try JSONSerialization.data(withJSONObject: validatedSerializedObject, options: options)
   }
 }
 
-internal func validate(_ object: AnyObject) -> AnyObject {  
+internal func validate(_ object: Any) -> Any {
   switch object {
-  case let value as JSONValue:
-    return value.JSONValue
+  case let value as HackySerializable:
+    return value.serialized
     
-  case let dictionary as [String: AnyObject]:
+  case let dictionary as [String: Any]:
     let validatedEntries = dictionary.map { key, value in (key, validate(value)) }
     
-    var validatedDictionary: [String: AnyObject] = [:]
+    var validatedDictionary: [String: Any] = [:]
     validatedEntries.forEach{ key, value in validatedDictionary[key] = value }
     
-    return validatedDictionary as AnyObject
+    return validatedDictionary
     
   case let array as [AnyObject]:
-    return array.map(validate) as AnyObject
+    return array.map(validate)
    
   case _ as NSString, _ as NSNumber, _ as NSNull:
     return object
