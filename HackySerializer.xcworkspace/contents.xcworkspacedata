@@ -4,7 +4,4 @@
    <FileRef
       location = "container:HackySerializer.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:HackySerializer/Testing.playground">
-   </FileRef>
 </Workspace>
